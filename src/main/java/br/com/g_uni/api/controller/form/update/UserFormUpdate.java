@@ -5,6 +5,7 @@ import br.com.g_uni.api.model.others.UserType;
 import br.com.g_uni.api.repository.UserRepository;
 
 public class UserFormUpdate {
+    // Atributos a serem atualizados
     private String name;
     private String email;
     private String password;

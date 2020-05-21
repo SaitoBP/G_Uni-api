@@ -12,14 +12,16 @@ import java.util.List;
 @Entity
 public class User implements UserDetails {
 
+    // Atributos
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String name;
-    private String userPassword;
-    private String email;
+    @Column(name = "USER_ID") private Long id;
+
+    @Column(name = "USER_NAME") private String name;
+    @Column(name = "USER_PASSWORD") private String userPassword;
+    @Column(name = "USER_EMAIL") private String email;
 
     @Enumerated(EnumType.STRING)
-    private UserType userType;
+    @Column(name = "USER_TYPE") private UserType userType;
 
     @OneToMany(fetch = FetchType.EAGER)
     private List<Profile> profile = new ArrayList<>();
@@ -28,6 +30,7 @@ public class User implements UserDetails {
     public User() {
     }
 
+    // Constutor do UserForm
     public User(String name, String email, String userPassword, UserType userType) {
         this.name = name;
         this.email = email;
