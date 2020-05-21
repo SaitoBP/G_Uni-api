@@ -5,6 +5,8 @@ import br.com.g_uni.api.controller.form.DocumentForm;
 import br.com.g_uni.api.controller.form.patch.DocumentFormPatch;
 import br.com.g_uni.api.controller.form.update.DocumentFormUpdate;
 import br.com.g_uni.api.model.Document;
+import br.com.g_uni.api.model.others.DocumentStatus;
+import br.com.g_uni.api.model.others.DocumentType;
 import br.com.g_uni.api.repository.DocumentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -24,16 +26,29 @@ import java.util.Optional;
 public class DocumentController {
 
     // Injeção de dependencias
-    // ToDo Adicionar filtros de tipo de documento, status e auxiliar
     @Autowired private DocumentRepository documentRepository;
 
 
     // HTTP GET - Lista todos os documentos
     @GetMapping
     public Page<DocumentDto> listAllDocuments(@PageableDefault(page = 0, size = 10, sort = "id",
-                                                               direction = Sort.Direction.ASC) Pageable pagination ) {
-        Page<Document> documents = documentRepository.findAll(pagination);
-        return DocumentDto.convert(documents);
+                                                               direction = Sort.Direction.ASC) Pageable pagination,
+                                              @RequestParam(required = false) DocumentType docType,
+                                              @RequestParam(required = false) DocumentStatus docStatus,
+                                              @RequestParam(required = false) String auxiliar) {
+        if (docType != null) {
+            Page<Document> documents = documentRepository.findByDocType(docType, pagination);
+            return DocumentDto.convert(documents);
+        } else if (docStatus != null) {
+            Page<Document> documents = documentRepository.findByDocStatus(docStatus, pagination);
+            return DocumentDto.convert(documents);
+        } else if (auxiliar != null){
+            Page<Document> documents = documentRepository.findByAuxiliar(auxiliar, pagination);
+            return DocumentDto.convert(documents);
+        } else {
+            Page<Document> documents = documentRepository.findAll(pagination);
+            return DocumentDto.convert(documents);
+        }
     }
 
     // HTTP GET - Puxa um documento pelo id
@@ -113,20 +128,43 @@ public class DocumentController {
         }
     }
 
-    // ToDo HTTP PATCH - Adiciona data de finalização do documento pelo seu id
-    @PatchMapping("/type/id:{id}") @Transactional
+    // HTTP PATCH - Adiciona data de finalização do documento pelo seu id
+    @PatchMapping("/finish/id:{id}") @Transactional
     public ResponseEntity<DocumentDto> patchDocumentFinishDateById(@PathVariable Long id,
                                                                    @RequestBody DocumentFormPatch formPatch) {
         Optional<Document> documentOptional = documentRepository.findById(id);
         if (documentOptional.isPresent()) {
             // Procura um documento no banco de dados pelo seu id
-            Document document = formPatch.patchType(id, documentRepository);
+            Document document = formPatch.patchFinishDate(id, documentRepository);
             return ResponseEntity.ok(new DocumentDto(document));
         } else {
             return ResponseEntity.notFound().build();
         }
     }
 
-    // ToDo HTTP PATCH - Adiciona data de envio para validação do documento pelo seu id
-    // ToDo HTTP DELETE - Deleta um documento pelo seu id
+    // HTTP PATCH - Adiciona data de envio para validação do documento pelo seu id
+    @PatchMapping("/validation/id:{id}") @Transactional
+    public ResponseEntity<DocumentDto> patchDocumentValidationDateById(@PathVariable Long id,
+                                                                       @RequestBody DocumentFormPatch formPatch) {
+        Optional<Document> documentOptional = documentRepository.findById(id);
+        if (documentOptional.isPresent()) {
+            // Procura um documento no banco de dados pelo seu id
+            Document document = formPatch.patchValidationDate(id, documentRepository);
+            return ResponseEntity.ok(new DocumentDto(document));
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    // HTTP DELETE - Deleta um documento pelo seu id
+    @DeleteMapping("/id:{id}") @Transactional
+    public ResponseEntity<?> deleteDocumentById(@PathVariable Long id) {
+        Optional<Document> documentOptional = documentRepository.findById(id);
+        if (documentOptional.isPresent()) {
+            documentRepository.deleteById(id);
+            return ResponseEntity.ok().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 }
