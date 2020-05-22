@@ -4,7 +4,7 @@ import br.com.g_uni.api.controller.dto.DocumentDto;
 import br.com.g_uni.api.controller.form.DocumentForm;
 import br.com.g_uni.api.controller.form.patch.DocumentPatchStatus;
 import br.com.g_uni.api.controller.form.patch.DocumentPatchType;
-import br.com.g_uni.api.controller.form.update.DocumentFormUpdate;
+import br.com.g_uni.api.controller.form.update.DocumentUpdate;
 import br.com.g_uni.api.model.others.DocumentStatus;
 import br.com.g_uni.api.model.others.DocumentType;
 import br.com.g_uni.api.services.DocumentServices;
@@ -53,7 +53,7 @@ public class DocumentController {
     // HTTP PUT - Atualiza todos os dados de um documento pelo seu id
     @PutMapping("/id:{id}") @Transactional
     public ResponseEntity<DocumentDto> updateDocumentById(@PathVariable Long id,
-                                                          @RequestBody @Valid DocumentFormUpdate formUpdate) {
+                                                          @RequestBody @Valid DocumentUpdate formUpdate) {
         return documentServices.updateDocumentById(id, formUpdate);
     }
 

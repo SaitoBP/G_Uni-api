@@ -4,7 +4,7 @@ import br.com.g_uni.api.controller.dto.DocumentDto;
 import br.com.g_uni.api.controller.form.DocumentForm;
 import br.com.g_uni.api.controller.form.patch.DocumentPatchStatus;
 import br.com.g_uni.api.controller.form.patch.DocumentPatchType;
-import br.com.g_uni.api.controller.form.update.DocumentFormUpdate;
+import br.com.g_uni.api.controller.form.update.DocumentUpdate;
 import br.com.g_uni.api.model.Document;
 import br.com.g_uni.api.model.others.DocumentStatus;
 import br.com.g_uni.api.model.others.DocumentType;
@@ -67,7 +67,7 @@ public class DocumentServices {
         return ResponseEntity.created(uri).body(new DocumentDto(document));
     }
     // Método para atualizar todos os dados de um documento pelo seu id
-    public ResponseEntity<DocumentDto> updateDocumentById(Long id, DocumentFormUpdate form) {
+    public ResponseEntity<DocumentDto> updateDocumentById(Long id, DocumentUpdate form) {
         Optional<Document> byId = documentRepository.findById(id);
         if (byId.isPresent()) {
             Document document = form.update(id, documentRepository);

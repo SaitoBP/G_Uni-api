@@ -7,7 +7,7 @@ import br.com.g_uni.api.repository.DocumentRepository;
 
 import java.time.LocalDate;
 
-public class DocumentFormUpdate {
+public class DocumentUpdate {
 
     // Atributos a serem atualizados
     private DocumentStatus documentStatus;
