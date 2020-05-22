@@ -12,10 +12,10 @@ public class UserFormUpdate {
     private UserType userType;
 
     // Método para atualizar um usuario
-    public User update(Long id, UserRepository userRepository) {
+    public User update(Long id, UserRepository repository) {
 
         // Procura um usuario no banco de dados pelo seu id
-        User user = userRepository.getOne(id);
+        User user = repository.getOne(id);
 
         user.setName(this.name);
         user.setEmail(this.email);

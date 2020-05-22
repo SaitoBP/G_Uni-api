@@ -52,7 +52,7 @@ public class DocumentServices {
         return byId.map(document -> ResponseEntity.ok(new DocumentDto(document))).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    // Método para criar um novo documento
+    // Método para cadastrar um novo documento
     public ResponseEntity<DocumentDto> createDocument(DocumentForm form,
                                                       UriComponentsBuilder uriBuilder) {
         // Converte: DocumentForm -> Document
@@ -62,7 +62,7 @@ public class DocumentServices {
         documentRepository.save(document);
 
         // Cria a uri
-        URI uri = uriBuilder.path("/documen{id}").buildAndExpand(document.getId()).toUri();
+        URI uri = uriBuilder.path("/document/{id}").buildAndExpand(document.getId()).toUri();
 
         return ResponseEntity.created(uri).body(new DocumentDto(document));
     }

@@ -10,7 +10,7 @@ public class DocumentForm {
     @NotNull private DocumentType type;
     @NotNull @NotEmpty private String auxiliar;
 
-    // Método de conversão "form" -> "object"
+    // Converte: DocumentForm -> Document
     public Document convert() {
         return new Document(type, auxiliar);
     }

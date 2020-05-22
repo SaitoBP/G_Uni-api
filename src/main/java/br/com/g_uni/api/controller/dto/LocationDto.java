@@ -1,25 +1,27 @@
-package br.com.g_uni.api.model;
+package br.com.g_uni.api.controller.dto;
 
-import javax.persistence.*;
+import br.com.g_uni.api.model.Location;
+import org.springframework.data.domain.Page;
 
-@Entity
-public class Location {
+public class LocationDto {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "LOCATION_ID") private Long id;
+    // Atributos
+    private Long id;
     private String city;
     private String address;
-    @Column(name = "ZIP_CODE") private String zipCode; // CEP
+    private String zipCode;
 
-    // Construtor padrão - OBRIGATÓRIO
-    public Location() {
+    // Construtor
+    public LocationDto(Location location) {
+        this.id = location.getId();
+        this.city = location.getCity();
+        this.address = location.getAddress();
+        this.zipCode = location.getZipCode();
     }
 
-    // Construtor usado no LocationForm
-    public Location(String city, String address, String zipCode) {
-        this.city = city;
-        this.address = address;
-        this.zipCode = zipCode;
+    // Converte: Location -> LocationDto
+    public static Page<LocationDto> convert(Page<Location> locations) {
+        return locations.map(LocationDto::new);
     }
 
     // Getters & Setters
