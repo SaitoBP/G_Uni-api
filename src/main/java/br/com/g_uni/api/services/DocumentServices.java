@@ -84,6 +84,7 @@ public class DocumentServices {
             Document document = documentRepository.getOne(id);
             if (patchStatus.getDocumentStatus() == DocumentStatus.FINALIZADO) {
                 document.setFinishDate(LocalDate.now());
+                document.setSendToValidationDate(LocalDate.now());
             }
             if (patchStatus.getDocumentStatus() == DocumentStatus.VALIDAÇÃO) {
                 document.setSendToValidationDate(LocalDate.now());
