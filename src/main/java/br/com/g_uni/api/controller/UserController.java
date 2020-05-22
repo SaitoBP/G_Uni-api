@@ -2,10 +2,8 @@ package br.com.g_uni.api.controller;
 
 import br.com.g_uni.api.controller.dto.UserDto;
 import br.com.g_uni.api.controller.form.UserForm;
-import br.com.g_uni.api.controller.form.update.UserFormUpdate;
-import br.com.g_uni.api.model.User;
+import br.com.g_uni.api.controller.form.update.UserUpdate;
 import br.com.g_uni.api.model.others.UserType;
-import br.com.g_uni.api.repository.UserRepository;
 import br.com.g_uni.api.services.UserServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
@@ -15,15 +13,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.transaction.Transactional;
 import javax.validation.Valid;
-import java.net.URI;
-import java.util.List;
-import java.util.Optional;
 
 @RestController @RequestMapping("/user")
 public class UserController {
@@ -67,8 +61,8 @@ public class UserController {
     // HTTP PUT - Atualiza todos os dados de um usuario
     @PutMapping("/id:{id}") @Transactional @CacheEvict(value = "listAllUsers", allEntries = true)
     public ResponseEntity<UserDto> updateUserById(@PathVariable Long id,
-                                                  @RequestBody @Valid UserFormUpdate userFormUpdate) {
-        return userServices.updateUserById(id, userFormUpdate);
+                                                  @RequestBody @Valid UserUpdate userUpdate) {
+        return userServices.updateUserById(id, userUpdate);
     }
 
     // HTTP DELETE - Deleta um usuario pelo seu id

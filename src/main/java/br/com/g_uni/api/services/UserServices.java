@@ -2,7 +2,7 @@ package br.com.g_uni.api.services;
 
 import br.com.g_uni.api.controller.dto.UserDto;
 import br.com.g_uni.api.controller.form.UserForm;
-import br.com.g_uni.api.controller.form.update.UserFormUpdate;
+import br.com.g_uni.api.controller.form.update.UserUpdate;
 import br.com.g_uni.api.model.User;
 import br.com.g_uni.api.model.others.UserType;
 import br.com.g_uni.api.repository.UserRepository;
@@ -76,7 +76,7 @@ public class UserServices {
     }
 
     // Método para atualizar todos os dados de um usuario pelo seu id
-    public ResponseEntity<UserDto> updateUserById(Long id, UserFormUpdate formUpdate) {
+    public ResponseEntity<UserDto> updateUserById(Long id, UserUpdate formUpdate) {
         Optional<User> byId = userRepository.findById(id);
         if (byId.isPresent()) {
             // Cripografa a senha do usuario antes de salvar no banco de dados
