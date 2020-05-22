@@ -8,6 +8,8 @@ import br.com.g_uni.api.repository.DocumentRepository;
 import java.time.LocalDate;
 
 public class DocumentFormUpdate {
+
+    // Atributos a serem atualizados
     private DocumentStatus documentStatus;
     private DocumentType documentType;
     private LocalDate documentAttribuitionDate;
@@ -16,9 +18,10 @@ public class DocumentFormUpdate {
     private String auxiliar;
 
     // Método para atualizar um documento
-    public Document update(Long id, DocumentRepository documentRepository) {
+    public Document update(Long id, DocumentRepository repository) {
+
         // Procura um documento no banco de dados pelo seu id
-        Document document = documentRepository.getOne(id);
+        Document document = repository.getOne(id);
 
         document.setDocStatus(this.documentStatus);
         document.setDocType(this.documentType);

@@ -7,20 +7,20 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 public class DocumentForm {
-    @NotNull private DocumentType documentType;
+    @NotNull private DocumentType type;
     @NotNull @NotEmpty private String auxiliar;
 
     // Método de conversão "form" -> "object"
     public Document convert() {
-        return new Document(documentType, auxiliar);
+        return new Document(type, auxiliar);
     }
 
     // Getters & Setters
-    public DocumentType getDocumentType() {
-        return documentType;
+    public DocumentType getType() {
+        return type;
     }
-    public void setDocumentType(DocumentType documentType) {
-        this.documentType = documentType;
+    public void setType(DocumentType type) {
+        this.type = type;
     }
     public String getAuxiliar() {
         return auxiliar;

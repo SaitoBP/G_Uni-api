@@ -20,9 +20,6 @@ public class Document {
     private LocalDate sendToValidationDate;
     private String auxiliar;
 
-    // Composições
-    @ManyToOne private Os os;
-
     // Construtor default - OBRIGATORIO
     private Document(){}
 
@@ -74,11 +71,5 @@ public class Document {
     }
     public void setAuxiliar(String auxiliar) {
         this.auxiliar = auxiliar;
-    }
-    public Os getOs() {
-        return os;
-    }
-    public void setOs(Os os) {
-        this.os = os;
     }
 }

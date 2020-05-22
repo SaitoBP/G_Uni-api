@@ -10,22 +10,22 @@ import java.time.LocalDate;
 public class DocumentDto {
 
     // Atributos
-    private Long documentId;
-    private DocumentStatus documentStatus;
-    private DocumentType documentType;
-    private LocalDate documentAttribuitionDate;
-    private LocalDate documentFinishDate;
-    private LocalDate documentSendToValidationDate;
+    private Long id;
+    private DocumentStatus status;
+    private DocumentType type;
+    private LocalDate attribuitionDate;
+    private LocalDate finishDate;
+    private LocalDate sendToValidationDate;
     private String auxiliar;
 
     // Construtor
     public DocumentDto(Document document) {
-        this.documentId = document.getId();
-        this.documentStatus = document.getDocStatus();
-        this.documentType = document.getDocType();
-        this.documentAttribuitionDate = document.getAttribuitionDate();
-        this.documentFinishDate = document.getFinishDate();
-        this.documentSendToValidationDate = document.getSendToValidationDate();
+        this.id = document.getId();
+        this.status = document.getDocStatus();
+        this.type = document.getDocType();
+        this.attribuitionDate = document.getAttribuitionDate();
+        this.finishDate = document.getFinishDate();
+        this.sendToValidationDate = document.getSendToValidationDate();
         this.auxiliar = document.getAuxiliar();
     }
 
@@ -35,25 +35,46 @@ public class DocumentDto {
     }
 
     // Getters - Não é necessario Setters
-    public Long getDocumentId() {
-        return documentId;
+    public Long getId() {
+        return id;
     }
-    public DocumentStatus getDocumentStatus() {
-        return documentStatus;
+    public void setId(Long id) {
+        this.id = id;
     }
-    public DocumentType getDocumentType() {
-        return documentType;
+    public DocumentStatus getStatus() {
+        return status;
     }
-    public LocalDate getDocumentAttribuitionDate() {
-        return documentAttribuitionDate;
+    public void setStatus(DocumentStatus status) {
+        this.status = status;
     }
-    public LocalDate getDocumentFinishDate() {
-        return documentFinishDate;
+    public DocumentType getType() {
+        return type;
     }
-    public LocalDate getDocumentSendToValidationDate() {
-        return documentSendToValidationDate;
+    public void setType(DocumentType type) {
+        this.type = type;
+    }
+    public LocalDate getAttribuitionDate() {
+        return attribuitionDate;
+    }
+    public void setAttribuitionDate(LocalDate attribuitionDate) {
+        this.attribuitionDate = attribuitionDate;
+    }
+    public LocalDate getFinishDate() {
+        return finishDate;
+    }
+    public void setFinishDate(LocalDate finishDate) {
+        this.finishDate = finishDate;
+    }
+    public LocalDate getSendToValidationDate() {
+        return sendToValidationDate;
+    }
+    public void setSendToValidationDate(LocalDate sendToValidationDate) {
+        this.sendToValidationDate = sendToValidationDate;
     }
     public String getAuxiliar() {
         return auxiliar;
+    }
+    public void setAuxiliar(String auxiliar) {
+        this.auxiliar = auxiliar;
     }
 }
