@@ -5,11 +5,12 @@ import javax.persistence.*;
 @Entity
 public class Information {
 
+    // Atributos
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private Integer employees;
-    private Integer sectors;
-    private Integer roles; // Cargos
+    @Column(name = "INFO_ID") private Long id;
+    @Column(name = "EMPLOYEES_NUMBER") private String employees;
+    @Column(name = "SECTORS_NUMBER") private String sectors;
+    @Column(name = "POSITIONS_NUMBER") private String positions; // Cargos
 
     // Composições
     @OneToOne
@@ -22,23 +23,23 @@ public class Information {
     public void setId(Long id) {
         this.id = id;
     }
-    public Integer getEmployees() {
+    public String getEmployees() {
         return employees;
     }
-    public void setEmployees(Integer employees) {
+    public void setEmployees(String employees) {
         this.employees = employees;
     }
-    public Integer getSectors() {
+    public String getSectors() {
         return sectors;
     }
-    public void setSectors(Integer sectors) {
+    public void setSectors(String sectors) {
         this.sectors = sectors;
     }
-    public Integer getRoles() {
-        return roles;
+    public String getPositions() {
+        return positions;
     }
-    public void setRoles(Integer roles) {
-        this.roles = roles;
+    public void setPositions(String positions) {
+        this.positions = positions;
     }
     public Contact getContact() {
         return contact;
