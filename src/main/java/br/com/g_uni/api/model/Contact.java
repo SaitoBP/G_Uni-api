@@ -1,22 +1,21 @@
 package br.com.g_uni.api.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Contact {
 
+    // Atributos
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String contactName;
-    private String contactPhone;
-    private String contactEmail;
+    @Column(name = "CONTACT_ID") private Long id;
 
-    private String managerName;
-    private String managerPhone;
-    private String managerEmail;
+    @Column(name = "MANAGER_NAME") private String managerName;
+    @Column(name = "MANAGER_PHONE") private String managerPhone;
+    @Column(name = "MANAGER_EMAIL") private String managerEmail;
+
+    @Column(name = "CONTACT_NAME") private String contactName;
+    @Column(name = "CONTACT_PHONE") private String contactPhone;
+    @Column(name = "CONTACT_EMAIL") private String contactEmail;
 
     // Getters & Setters
     public Long getId() {
