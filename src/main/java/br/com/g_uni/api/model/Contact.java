@@ -17,6 +17,21 @@ public class Contact {
     @Column(name = "CONTACT_PHONE") private String contactPhone;
     @Column(name = "CONTACT_EMAIL") private String contactEmail;
 
+    // Construtor padrão - OBRIGATÓRIO
+    public Contact() {
+    }
+
+    // Construtor usado no ContactForm
+    public Contact(String managerName, String managerPhone, String managerEmail,
+                   String contactName, String contactPhone, String contactEmail) {
+        this.managerName = managerName;
+        this.managerPhone = managerPhone;
+        this.managerEmail = managerEmail;
+        this.contactName = contactName;
+        this.contactPhone = contactPhone;
+        this.contactEmail = contactEmail;
+    }
+
     // Getters & Setters
     public Long getId() {
         return id;
