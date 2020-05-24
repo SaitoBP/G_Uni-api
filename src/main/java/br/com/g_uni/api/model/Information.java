@@ -16,6 +16,18 @@ public class Information {
     @OneToOne
     private Contact contact;
 
+    // Construtor padrão - OBRIGATORIO
+    public Information() {
+    }
+
+    // Construtor usado no InformationForm
+    public Information(String employees, String sectors, String positions, Contact contact) {
+        this.employees = employees;
+        this.sectors = sectors;
+        this.positions = positions;
+        this.contact = contact;
+    }
+
     // Getters & Setters
     public Long getId() {
         return id;
