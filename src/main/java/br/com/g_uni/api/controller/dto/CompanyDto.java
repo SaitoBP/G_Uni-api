@@ -1,37 +1,40 @@
-package br.com.g_uni.api.model;
+package br.com.g_uni.api.controller.dto;
 
-import br.com.g_uni.api.controller.dto.LocationDto;
+import br.com.g_uni.api.model.Company;
+import br.com.g_uni.api.model.Information;
+import br.com.g_uni.api.model.Location;
+import org.springframework.data.domain.Page;
 
-import javax.persistence.*;
+public class CompanyDto {
 
-@Entity
-public class Company {
+    // Atributos a serem devolvidos
+    private Long id;
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "COMPANY_ID") private Long id;
-
-    @Column(name = "COMPANY_NAME") private String companyName;
+    private String companyName;
     private String cnpj;
     private String cnae;
 
-    // Composições
-    @OneToOne private Location location;
-    @OneToOne private Information information;
+    private Location location;
+    private Information information;
 
-    // Construtor padrão - OBRIGATORIO
-    public Company() {
+    // Construtor
+
+
+    public CompanyDto(Company company) {
+        this.id = company.getId();
+        this.companyName = company.getCompanyName();
+        this.cnpj = company.getCnpj();
+        this.cnae = company.getCnae();
+        this.location = company.getLocation();
+        this.information = company.getInformation();
     }
 
-    // Construtor usado no CompanyForm
-    public Company(String companyName, String cnpj, String cnae, Location location, Information information) {
-        this.companyName = companyName;
-        this.cnpj = cnpj;
-        this.cnae = cnae;
-        this.location = location;
-        this.information = information;
+    // Converte: Document -> DocumentDto
+    public static Page<CompanyDto> convert(Page<Company> companies) {
+        return companies.map(CompanyDto::new);
     }
 
-    // Getter & Setters
+    // Getters & Setters
     public Long getId() {
         return id;
     }
