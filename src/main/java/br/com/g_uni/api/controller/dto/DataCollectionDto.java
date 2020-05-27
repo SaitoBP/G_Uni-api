@@ -1,29 +1,31 @@
-package br.com.g_uni.api.model;
+package br.com.g_uni.api.controller.dto;
 
+import br.com.g_uni.api.model.DataCollection;
 import br.com.g_uni.api.model.others.CollectStatus;
+import org.springframework.data.domain.Page;
 
-import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
-@Entity
-public class DataCollection {
+public class DataCollectionDto {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "DATA_COLLECTION_ID") private Long id;
-
-    @Enumerated(EnumType.STRING)
-    private CollectStatus collectStatus = CollectStatus.COLETA_AGENDADA;
+    // Atributos a serem devolvidos
+    private Long id;
+    private CollectStatus collectStatus;
     private LocalDate collectDate;
     private LocalDate sendToPacDate;
 
-    // Construtor padrão - OBRIGATORIO
-    public DataCollection() {
+    // Construtor
+    public DataCollectionDto(DataCollection dataCollection) {
+        this.id = dataCollection.getId();
+        this.collectStatus = dataCollection.getCollectStatus();
+        this.collectDate = dataCollection.getCollectDate();
+        this.sendToPacDate = dataCollection.getSendToPacDate();
     }
 
-    // Construtor usado no DataCollectionForm
-    public DataCollection(LocalDate collectDate, LocalDate sendToPacDate) {
-        this.collectDate = collectDate;
-        this.sendToPacDate = sendToPacDate;
+    // Converte: DataCollection -> Data CollectionDto
+    public static Page<DataCollectionDto> convert(Page<DataCollection> dataCollection) {
+        return dataCollection.map(DataCollectionDto::new);
     }
 
     // Getters & Setters
