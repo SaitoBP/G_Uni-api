@@ -4,12 +4,13 @@ import br.com.g_uni.api.model.others.Branch;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 public class Os {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "OS_ID") private Long id;
     private String osNumber;
     private LocalDate osEmissionDate; // Data de emissão
     private LocalDate osDeliveryDate; // Data de entrega
@@ -21,6 +22,7 @@ public class Os {
     // Composições
     @ManyToOne private Company company;
     @OneToOne private DataCollection dataCollection;
+    @OneToMany private List<Document> documents;
 
     // Getters & Setters
     public Long getId() {
@@ -70,5 +72,11 @@ public class Os {
     }
     public void setDataCollection(DataCollection dataCollection) {
         this.dataCollection = dataCollection;
+    }
+    public List<Document> getDocuments() {
+        return documents;
+    }
+    public void setDocuments(List<Document> documents) {
+        this.documents = documents;
     }
 }
