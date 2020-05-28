@@ -2,6 +2,7 @@ package br.com.g_uni.api.controller;
 
 import br.com.g_uni.api.controller.dto.DataCollectionDto;
 import br.com.g_uni.api.controller.form.DataCollectionForm;
+import br.com.g_uni.api.controller.form.update.DataCollectionUpdate;
 import br.com.g_uni.api.services.DataCollectionServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -28,10 +29,30 @@ public class DataCollectionController {
         return dataCollectionServices.listAllDataCollections(pagination);
     }
 
-    // HTTP POST - Cadastra novas informações de uma OS
+    // HTTP GET - Puxa informações de coleta de uma OS pelo seu id
+    @GetMapping("/id:{id}")
+    public ResponseEntity<DataCollectionDto> getDataCollectionById(@PathVariable Long id) {
+        return dataCollectionServices.getDataCollectionById(id);
+    }
+
+    // HTTP POST - Cadastra novas informações de coleta de uma OS
     @PostMapping @Transactional
     public ResponseEntity<DataCollectionDto> createDataCollection(@RequestBody @Valid DataCollectionForm form,
                                                                   UriComponentsBuilder uriBuilder) {
         return dataCollectionServices.createDataCollection(form, uriBuilder);
     }
+
+    // HTTP PUT - Atualiza todas as informações de coleta de uma OS pelo seu id
+    @PutMapping("/id:{id}") @Transactional
+    public ResponseEntity<DataCollectionDto> updateDataCollection(@PathVariable Long id,
+                                                                  @RequestBody @Valid DataCollectionUpdate form) {
+        return dataCollectionServices.updateDataCollection(id, form);
+    }
+
+    // HTTP DELETE - Deleta informações de coleta de uma OS pelo seu id
+    @DeleteMapping("/id:{id}") @Transactional
+    public ResponseEntity<?> deteleDataCollectionById(@PathVariable Long id) {
+        return dataCollectionServices.deleteDataCollectionById(id);
+    }
+
 }

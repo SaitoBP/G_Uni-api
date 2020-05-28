@@ -1,19 +1,23 @@
-package br.com.g_uni.api.controller.form;
+package br.com.g_uni.api.controller.form.update;
 
 import br.com.g_uni.api.model.DataCollection;
-import br.com.g_uni.api.model.others.CollectStatus;
+import br.com.g_uni.api.repository.DataCollectionRepository;
 
 import java.time.LocalDate;
 
-public class DataCollectionForm {
+public class DataCollectionUpdate {
 
-    // Atributos a serem adicionados
+    // Atributos a serem atualidos
     private LocalDate collectDate;
     private LocalDate sendToPacDate;
 
-    // Converte: DataCollectionForm -> DataCollection
-    public DataCollection convert() {
-        return new DataCollection(collectDate, sendToPacDate);
+    // Atualiza as informações da entidade
+    public DataCollection update(Long id, DataCollectionRepository dataCollectionRepository) {
+        DataCollection dataCollection = dataCollectionRepository.getOne(id);
+        dataCollection.setCollectDate(this.collectDate);
+        dataCollection.setSendToPacDate(this.sendToPacDate);
+
+        return dataCollection;
     }
 
     // Getters & Setters
@@ -26,6 +30,7 @@ public class DataCollectionForm {
     public LocalDate getSendToPacDate() {
         return sendToPacDate;
     }
+
     public void setSendToPacDate(LocalDate sendToPacDate) {
         this.sendToPacDate = sendToPacDate;
     }
