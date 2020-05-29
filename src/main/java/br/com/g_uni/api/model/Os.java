@@ -25,6 +25,8 @@ public class Os {
     @OneToMany private List<Document> documents;
 
     // Construtor padrão - OBRIGATÓRIO
+    public Os() {
+    }
 
     // Construtor usado no form
     public Os(String osNumber, LocalDate osEmissionDate, LocalDate osValidityDate, Branch uo, Company company) {
