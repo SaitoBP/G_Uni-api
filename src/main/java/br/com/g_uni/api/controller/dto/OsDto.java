@@ -1,45 +1,51 @@
-package br.com.g_uni.api.model;
+package br.com.g_uni.api.controller.dto;
 
+import br.com.g_uni.api.model.Company;
+import br.com.g_uni.api.model.DataCollection;
+import br.com.g_uni.api.model.Document;
+import br.com.g_uni.api.model.Os;
 import br.com.g_uni.api.model.others.Branch;
+import org.springframework.data.domain.Page;
 
-import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
 
-@Entity
-public class Os {
+public class OsDto {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "OS_ID") private Long id;
+    // Atributos a serem devolvidos
+    private long id;
     private String osNumber;
-    private LocalDate osEmissionDate; // Data de emissão
-    private LocalDate osDeliveryDate; // Data de entrega
-    private LocalDate osValidityDate; // Vigencia
-
-    @Enumerated(EnumType.STRING)
+    private LocalDate osEmissionDate;
+    private LocalDate osDeliveryDate;
+    private LocalDate osValidityDate;
     private Branch uo;
+    private Company company;
+    private DataCollection dataCollection;
+    private List<Document> documents;
 
-    // Composições
-    @ManyToOne private Company company;
-    @OneToOne private DataCollection dataCollection;
-    @OneToMany private List<Document> documents;
+    // Constutor
+    public OsDto(Os os) {
+        this.id = os.getId();
+        this.osNumber = os.getOsNumber();
+        this.osEmissionDate = os.getOsEmissionDate();
+        this.osDeliveryDate = os.getOsDeliveryDate();
+        this.osValidityDate = os.getOsValidityDate();
+        this.uo = os.getUo();
+        this.company = os.getCompany();
+        this.dataCollection = os.getDataCollection();
+        this.documents = os.getDocuments();
+    }
 
-    // Construtor padrão - OBRIGATÓRIO
-
-    // Construtor usado no form
-    public Os(String osNumber, LocalDate osEmissionDate, LocalDate osValidityDate, Branch uo, Company company) {
-        this.osNumber = osNumber;
-        this.osEmissionDate = osEmissionDate;
-        this.osValidityDate = osValidityDate;
-        this.uo = uo;
-        this.company = company;
+    // Converte: OsDto -> Os
+    public static Page<OsDto> convert(Page<Os> os) {
+        return os.map(OsDto::new);
     }
 
     // Getters & Setters
-    public Long getId() {
+    public long getId() {
         return id;
     }
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
     public String getOsNumber() {
