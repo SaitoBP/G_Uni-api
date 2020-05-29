@@ -2,6 +2,7 @@ package br.com.g_uni.api.controller;
 
 import br.com.g_uni.api.controller.dto.OsDto;
 import br.com.g_uni.api.controller.form.OsForm;
+import br.com.g_uni.api.controller.form.patch.OsPatchDocument;
 import br.com.g_uni.api.services.OsServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -29,10 +30,24 @@ public class OsController {
         return osServices.listAllOs(pagination);
     }
 
+    // HTTP GET - Puxa uma OS pelo seu id
+    @GetMapping("/id:{id}")
+    public ResponseEntity<OsDto> getOsById(@PathVariable Long id) {
+        return osServices.getOsById(id);
+    }
+
     // HTTP POST - Cria uma nova OS
     @PostMapping @Transactional
     public ResponseEntity<OsDto> createOs(@RequestBody @Valid OsForm form,
                                           UriComponentsBuilder uriBuilder) {
         return osServices.createOs(form, uriBuilder);
+    }
+
+
+    // HTTP PATCH - Adiciona um documento na OS pelo seu id
+    @PatchMapping("/id:{id}") @Transactional
+    public ResponseEntity<OsDto> patchOsDocumentsById(@PathVariable Long id,
+                                                      @RequestBody @Valid OsPatchDocument form) {
+        return osServices.patchOsDocumentsById(id, form);
     }
 }

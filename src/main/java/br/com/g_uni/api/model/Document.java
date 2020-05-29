@@ -21,7 +21,7 @@ public class Document {
     private String auxiliar;
 
     // Construtor default - OBRIGATORIO
-    private Document(){}
+    public Document(){}
 
     // Construtor usado no DocumentForm
     public Document(DocumentType documentType, String auxiliar) {

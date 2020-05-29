@@ -4,6 +4,7 @@ import br.com.g_uni.api.model.others.Branch;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
