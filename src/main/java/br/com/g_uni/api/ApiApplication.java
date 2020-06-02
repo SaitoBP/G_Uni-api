@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 @EnableSpringDataWebSupport
 @EnableCaching
 
-@CrossOrigin(origins = "*", allowedHeaders = "*", allowCredentials = "*", maxAge = 3600)
 public class ApiApplication {
 
 	public static void main(String[] args) {
