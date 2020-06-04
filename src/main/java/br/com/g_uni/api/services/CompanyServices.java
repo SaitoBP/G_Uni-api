@@ -40,6 +40,12 @@ public class CompanyServices {
         return byId.map(company -> ResponseEntity.ok().body(new CompanyDto(company))).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
+    // Método para puxar uma empresa pelo seu cnpj
+    public ResponseEntity<CompanyDto> getCompanyByCnpj(String cnpj) {
+        Optional<Company> companyCnpj = companyRepository.findByCnpj(cnpj);
+        return companyCnpj.map(company -> ResponseEntity.ok(new CompanyDto(company))).orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
     // Método para cadastrar uma nova empresa
     public ResponseEntity<CompanyDto> createCompany(CompanyForm form,
                                                     UriComponentsBuilder uriBuilder) {

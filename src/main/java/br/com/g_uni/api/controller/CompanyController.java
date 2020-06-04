@@ -15,7 +15,6 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.transaction.Transactional;
 import javax.validation.Valid;
-
 @RestController @RequestMapping("/company")
 public class CompanyController {
 
@@ -33,6 +32,12 @@ public class CompanyController {
     @GetMapping("/id:{id}")
     public ResponseEntity<CompanyDto> getCompanyById(@PathVariable Long id) {
         return companyServices.getCompanyById(id);
+    }
+
+    // HTTP GET - Puxa uma empresa pelo cnpj (APENAS NUMEROS)
+    @GetMapping("/cnpj:{cnpj}")
+    public ResponseEntity<CompanyDto> getCompanyByCnpj(@PathVariable String cnpj) {
+        return companyServices.getCompanyByCnpj(cnpj);
     }
 
     // HTTP POST - Cadastra uma nova empresa
