@@ -9,7 +9,7 @@ public class InformationDto {
     private Long id;
     private String employees;
     private String sectors;
-    private String position;
+    private String positions;
     private Long contactId;
 
     // Construtor
@@ -17,7 +17,7 @@ public class InformationDto {
         this.id = information.getId();
         this.employees = information.getEmployees();
         this.sectors = information.getSectors();
-        this.position = information.getPositions();
+        this.positions = information.getPositions();
         this.contactId = information.getContact().getId();
     }
 
@@ -45,11 +45,11 @@ public class InformationDto {
     public void setSectors(String sectors) {
         this.sectors = sectors;
     }
-    public String getPosition() {
-        return position;
+    public String getPositions() {
+        return positions;
     }
-    public void setPosition(String position) {
-        this.position = position;
+    public void setPositions(String positions) {
+        this.positions = positions;
     }
     public Long getContactId() {
         return contactId;

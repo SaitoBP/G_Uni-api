@@ -6,6 +6,7 @@ import br.com.g_uni.api.controller.form.patch.OsPatchDocument;
 import br.com.g_uni.api.model.Company;
 import br.com.g_uni.api.model.Document;
 import br.com.g_uni.api.model.Os;
+import br.com.g_uni.api.model.others.Branch;
 import br.com.g_uni.api.repository.CompanyRepository;
 import br.com.g_uni.api.repository.DocumentRepository;
 import br.com.g_uni.api.repository.OsRepository;
@@ -28,8 +29,8 @@ public class OsServices {
     @Autowired private DocumentRepository documentRepository;
 
     // Método para listar todas as OS's
-    public Page<OsDto> listAllOs(Pageable pagination) {
-        Page<Os> os = osRepository.findAll(pagination);
+    public Page<OsDto> listAllOs(Pageable pagination, Branch uo) {
+        Page<Os> os = osRepository.findByUo(pagination, uo);
         return OsDto.convert(os);
     }
 
@@ -45,6 +46,7 @@ public class OsServices {
         // Verifica se o companyId existe no banco de dados
         Optional<Company> companyId = companyRepository.findById(form.getCompanyId());
         if (companyId.isPresent()) {
+
             // Converte: OsForm -> Os
             Os os = form.convert(companyRepository);
 

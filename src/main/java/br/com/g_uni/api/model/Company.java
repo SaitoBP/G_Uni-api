@@ -15,8 +15,8 @@ public class Company {
     private String cnae;
 
     // Composições
-    @OneToOne private Location location;
-    @OneToOne private Information information;
+    @OneToOne(cascade = CascadeType.ALL) private Location location;
+    @OneToOne(cascade = CascadeType.ALL) private Information information;
 
     // Construtor padrão - OBRIGATORIO
     public Company() {

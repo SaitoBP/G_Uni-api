@@ -5,6 +5,7 @@ import br.com.g_uni.api.model.others.DocumentType;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 public class Document {
@@ -15,18 +16,24 @@ public class Document {
     @Enumerated(EnumType.STRING) private DocumentStatus docStatus = DocumentStatus.EM_ELABORAÇÃO;
     @Enumerated(EnumType.STRING) private DocumentType docType;
 
-    private LocalDate attribuitionDate = LocalDate.now();
-    private LocalDate finishDate;
-    private LocalDate sendToValidationDate;
+    private String attribuitionDate;
+    private String finishDate;
+    private String sendToValidationDate;
     private String auxiliar;
 
     // Construtor default - OBRIGATORIO
     public Document(){}
 
     // Construtor usado no DocumentForm
-    public Document(DocumentType documentType, String auxiliar) {
-        this.docType = documentType;
+    public Document(DocumentType docType, String auxiliar, String attribuitionDate,
+                    String sendToValidationDate, String finishDate) {
+
+        // Atualiza os parametros de 'Document' com os dados do 'DocumentForm':
+        this.docType = docType;
         this.auxiliar = auxiliar;
+        this.attribuitionDate = attribuitionDate;
+        this.sendToValidationDate = sendToValidationDate;
+        this.finishDate = finishDate;
     }
 
     // Getters & Setters
@@ -48,22 +55,22 @@ public class Document {
     public void setDocType(DocumentType docType) {
         this.docType = docType;
     }
-    public LocalDate getAttribuitionDate() {
+    public String getAttribuitionDate() {
         return attribuitionDate;
     }
-    public void setAttribuitionDate(LocalDate attribuitionDate) {
+    public void setAttribuitionDate(String attribuitionDate) {
         this.attribuitionDate = attribuitionDate;
     }
-    public LocalDate getFinishDate() {
+    public String getFinishDate() {
         return finishDate;
     }
-    public void setFinishDate(LocalDate finishDate) {
+    public void setFinishDate(String finishDate) {
         this.finishDate = finishDate;
     }
-    public LocalDate getSendToValidationDate() {
+    public String getSendToValidationDate() {
         return sendToValidationDate;
     }
-    public void setSendToValidationDate(LocalDate sendToValidationDate) {
+    public void setSendToValidationDate(String sendToValidationDate) {
         this.sendToValidationDate = sendToValidationDate;
     }
     public String getAuxiliar() {

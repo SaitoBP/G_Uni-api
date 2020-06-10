@@ -13,9 +13,9 @@ public class DocumentDto {
     private Long id;
     private DocumentStatus status;
     private DocumentType type;
-    private LocalDate attribuitionDate;
-    private LocalDate finishDate;
-    private LocalDate sendToValidationDate;
+    private String attribuitionDate;
+    private String finishDate;
+    private String sendToValidationDate;
     private String auxiliar;
 
     // Construtor
@@ -53,22 +53,22 @@ public class DocumentDto {
     public void setType(DocumentType type) {
         this.type = type;
     }
-    public LocalDate getAttribuitionDate() {
+    public String getAttribuitionDate() {
         return attribuitionDate;
     }
-    public void setAttribuitionDate(LocalDate attribuitionDate) {
+    public void setAttribuitionDate(String attribuitionDate) {
         this.attribuitionDate = attribuitionDate;
     }
-    public LocalDate getFinishDate() {
+    public String getFinishDate() {
         return finishDate;
     }
-    public void setFinishDate(LocalDate finishDate) {
+    public void setFinishDate(String finishDate) {
         this.finishDate = finishDate;
     }
-    public LocalDate getSendToValidationDate() {
+    public String getSendToValidationDate() {
         return sendToValidationDate;
     }
-    public void setSendToValidationDate(LocalDate sendToValidationDate) {
+    public void setSendToValidationDate(String sendToValidationDate) {
         this.sendToValidationDate = sendToValidationDate;
     }
     public String getAuxiliar() {

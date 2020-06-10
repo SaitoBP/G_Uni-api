@@ -12,9 +12,9 @@ public class DocumentUpdate {
     // Atributos a serem atualizados
     private DocumentStatus documentStatus;
     private DocumentType documentType;
-    private LocalDate documentAttribuitionDate;
-    private LocalDate documentFinishDate;
-    private LocalDate documentSendToValidationDate;
+    private String documentAttribuitionDate;
+    private String documentFinishDate;
+    private String documentSendToValidationDate;
     private String auxiliar;
 
     // Método para atualizar um documento
@@ -33,7 +33,7 @@ public class DocumentUpdate {
         return document;
     }
 
-    // Getters & Setters
+    // Getters & Setters:
     public DocumentStatus getDocumentStatus() {
         return documentStatus;
     }
@@ -46,22 +46,22 @@ public class DocumentUpdate {
     public void setDocumentType(DocumentType documentType) {
         this.documentType = documentType;
     }
-    public LocalDate getDocumentAttribuitionDate() {
+    public String getDocumentAttribuitionDate() {
         return documentAttribuitionDate;
     }
-    public void setDocumentAttribuitionDate(LocalDate documentAttribuitionDate) {
+    public void setDocumentAttribuitionDate(String documentAttribuitionDate) {
         this.documentAttribuitionDate = documentAttribuitionDate;
     }
-    public LocalDate getDocumentFinishDate() {
+    public String getDocumentFinishDate() {
         return documentFinishDate;
     }
-    public void setDocumentFinishDate(LocalDate documentFinishDate) {
+    public void setDocumentFinishDate(String documentFinishDate) {
         this.documentFinishDate = documentFinishDate;
     }
-    public LocalDate getDocumentSendToValidationDate() {
+    public String getDocumentSendToValidationDate() {
         return documentSendToValidationDate;
     }
-    public void setDocumentSendToValidationDate(LocalDate documentSendToValidationDate) {
+    public void setDocumentSendToValidationDate(String documentSendToValidationDate) {
         this.documentSendToValidationDate = documentSendToValidationDate;
     }
     public String getAuxiliar() {

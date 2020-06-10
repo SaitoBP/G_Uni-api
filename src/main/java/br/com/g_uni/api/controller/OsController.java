@@ -3,6 +3,7 @@ package br.com.g_uni.api.controller;
 import br.com.g_uni.api.controller.dto.OsDto;
 import br.com.g_uni.api.controller.form.OsForm;
 import br.com.g_uni.api.controller.form.patch.OsPatchDocument;
+import br.com.g_uni.api.model.others.Branch;
 import br.com.g_uni.api.services.OsServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -26,8 +27,9 @@ public class OsController {
     @GetMapping
     public Page<OsDto> listAllOs(@PageableDefault(page = 0, size = 10,
                                                   direction = Sort.Direction.ASC,
-                                                  sort = "id")Pageable pagination) {
-        return osServices.listAllOs(pagination);
+                                                  sort = "id") Pageable pagination,
+                                 @RequestParam(required = true) Branch uo) {
+        return osServices.listAllOs(pagination, uo);
     }
 
     // HTTP GET - Puxa uma OS pelo seu id
@@ -42,7 +44,6 @@ public class OsController {
                                           UriComponentsBuilder uriBuilder) {
         return osServices.createOs(form, uriBuilder);
     }
-
 
     // HTTP PATCH - Adiciona um documento na OS pelo seu id
     @PatchMapping("/id:{id}") @Transactional

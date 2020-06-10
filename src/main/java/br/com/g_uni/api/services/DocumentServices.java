@@ -82,13 +82,6 @@ public class DocumentServices {
         Optional<Document> byId = documentRepository.findById(id);
         if (byId.isPresent()) {
             Document document = documentRepository.getOne(id);
-            if (patchStatus.getDocumentStatus() == DocumentStatus.FINALIZADO) {
-                document.setFinishDate(LocalDate.now());
-                document.setSendToValidationDate(LocalDate.now());
-            }
-            if (patchStatus.getDocumentStatus() == DocumentStatus.VALIDAÇÃO) {
-                document.setSendToValidationDate(LocalDate.now());
-            }
             document.setDocStatus(patchStatus.getDocumentStatus());
             return ResponseEntity.ok(new DocumentDto(document));
         } else {

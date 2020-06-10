@@ -1,11 +1,15 @@
 package br.com.g_uni.api.controller.form;
 
 import br.com.g_uni.api.model.Company;
+import br.com.g_uni.api.model.Document;
 import br.com.g_uni.api.model.Os;
 import br.com.g_uni.api.model.others.Branch;
+import br.com.g_uni.api.model.others.DocumentType;
 import br.com.g_uni.api.repository.CompanyRepository;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class OsForm {
 
