@@ -23,11 +23,11 @@ public class DocumentUpdate {
         // Procura um documento no banco de dados pelo seu id
         Document document = repository.getOne(id);
 
-        document.setDocStatus(this.documentStatus);
-        document.setDocType(this.documentType);
-        document.setAttribuitionDate(this.documentAttribuitionDate);
-        document.setFinishDate(this.documentFinishDate);
-        document.setSendToValidationDate(this.documentSendToValidationDate);
+//        document.setDocStatus(this.documentStatus);
+//        document.setDocType(this.documentType);
+//        document.setAttribuitionDate(this.documentAttribuitionDate);
+//        document.setFinishDate(this.documentFinishDate);
+//        document.setSendToValidationDate(this.documentSendToValidationDate);
         document.setAuxiliar(this.auxiliar);
 
         return document;

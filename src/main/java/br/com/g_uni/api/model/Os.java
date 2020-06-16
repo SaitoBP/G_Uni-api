@@ -23,7 +23,7 @@ public class Os {
     // Composições
     @ManyToOne private Company company;
     @OneToOne private DataCollection dataCollection;
-    @OneToMany private List<Document> documents;
+    @OneToMany(fetch = FetchType.EAGER) private List<Document> documents = new ArrayList<>();
 
     // Construtor padrão - OBRIGATÓRIO
     public Os() {

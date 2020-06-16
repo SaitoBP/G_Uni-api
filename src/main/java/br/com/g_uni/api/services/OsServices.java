@@ -3,6 +3,7 @@ package br.com.g_uni.api.services;
 import br.com.g_uni.api.controller.dto.OsDto;
 import br.com.g_uni.api.controller.form.OsForm;
 import br.com.g_uni.api.controller.form.patch.OsPatchDocument;
+import br.com.g_uni.api.controller.form.update.OsUpdate;
 import br.com.g_uni.api.model.Company;
 import br.com.g_uni.api.model.Document;
 import br.com.g_uni.api.model.Os;
@@ -57,6 +58,20 @@ public class OsServices {
             URI uri = uriBuilder.path("/os/{id}").buildAndExpand(os.getId()).toUri();
 
             return ResponseEntity.created(uri).body(new OsDto(os));
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    // Método para atualizar todas as informações de uma OS pelo seu id:
+    public ResponseEntity<OsDto> updateOsById(Long id,
+                                              OsUpdate form) {
+
+        // Procura uma os no banco de dados pelo id:
+        Optional<Os> osId = osRepository.findById(id);
+        if (osId.isPresent()) {
+            Os os = form.update(id, osRepository, documentRepository);
+            return ResponseEntity.ok().body(new OsDto(os));
         } else {
             return ResponseEntity.notFound().build();
         }

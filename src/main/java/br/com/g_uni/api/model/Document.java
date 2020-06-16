@@ -16,24 +16,19 @@ public class Document {
     @Enumerated(EnumType.STRING) private DocumentStatus docStatus = DocumentStatus.EM_ELABORAÇÃO;
     @Enumerated(EnumType.STRING) private DocumentType docType;
 
-    private String attribuitionDate;
-    private String finishDate;
-    private String sendToValidationDate;
-    private String auxiliar;
+    private String attribuitionDate = "";
+    private String finishDate = "";
+    private String sendToValidationDate = "";
+    private String auxiliar = "";
 
     // Construtor default - OBRIGATORIO
     public Document(){}
 
     // Construtor usado no DocumentForm
-    public Document(DocumentType docType, String auxiliar, String attribuitionDate,
-                    String sendToValidationDate, String finishDate) {
+    public Document(DocumentType docType) {
 
         // Atualiza os parametros de 'Document' com os dados do 'DocumentForm':
         this.docType = docType;
-        this.auxiliar = auxiliar;
-        this.attribuitionDate = attribuitionDate;
-        this.sendToValidationDate = sendToValidationDate;
-        this.finishDate = finishDate;
     }
 
     // Getters & Setters

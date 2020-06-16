@@ -3,8 +3,10 @@ package br.com.g_uni.api.controller;
 import br.com.g_uni.api.controller.dto.OsDto;
 import br.com.g_uni.api.controller.form.OsForm;
 import br.com.g_uni.api.controller.form.patch.OsPatchDocument;
+import br.com.g_uni.api.controller.form.update.OsUpdate;
 import br.com.g_uni.api.model.others.Branch;
 import br.com.g_uni.api.services.OsServices;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -43,6 +45,13 @@ public class OsController {
     public ResponseEntity<OsDto> createOs(@RequestBody @Valid OsForm form,
                                           UriComponentsBuilder uriBuilder) {
         return osServices.createOs(form, uriBuilder);
+    }
+
+    // HTTP PUT - Atualiza todas as informações de uma OS pelo seu id:
+    @PutMapping("/id:{id}") @Transactional
+    public ResponseEntity<OsDto> updateOsById(@PathVariable Long id,
+                                              @RequestBody @Valid OsUpdate form) {
+        return osServices.updateOsById(id, form);
     }
 
     // HTTP PATCH - Adiciona um documento na OS pelo seu id

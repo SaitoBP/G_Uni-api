@@ -12,8 +12,8 @@ import java.util.List;
 
 public class OsDto {
 
-    // Atributos a serem devolvidos
-    private long id;
+    // Atributos a serem devolvidos:
+    private Long id;
     private String osNumber;
     private LocalDate osEmissionDate;
     private LocalDate osDeliveryDate;
@@ -23,7 +23,7 @@ public class OsDto {
     private DataCollection dataCollection;
     private List<Document> documents;
 
-    // Constutor
+    // Constutor:
     public OsDto(Os os) {
         this.id = os.getId();
         this.osNumber = os.getOsNumber();
@@ -41,7 +41,7 @@ public class OsDto {
         return os.map(OsDto::new);
     }
 
-    // Getters & Setters
+    // Getters & Setters:
     public long getId() {
         return id;
     }

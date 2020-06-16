@@ -11,8 +11,8 @@ public class DocumentDto {
 
     // Atributos
     private Long id;
-    private DocumentStatus status;
-    private DocumentType type;
+    private DocumentStatus docStatus;
+    private DocumentType docType;
     private String attribuitionDate;
     private String finishDate;
     private String sendToValidationDate;
@@ -21,8 +21,8 @@ public class DocumentDto {
     // Construtor
     public DocumentDto(Document document) {
         this.id = document.getId();
-        this.status = document.getDocStatus();
-        this.type = document.getDocType();
+        this.docStatus = document.getDocStatus();
+        this.docType = document.getDocType();
         this.attribuitionDate = document.getAttribuitionDate();
         this.finishDate = document.getFinishDate();
         this.sendToValidationDate = document.getSendToValidationDate();
@@ -41,18 +41,23 @@ public class DocumentDto {
     public void setId(Long id) {
         this.id = id;
     }
-    public DocumentStatus getStatus() {
-        return status;
+
+    public DocumentStatus getDocStatus() {
+        return docStatus;
     }
-    public void setStatus(DocumentStatus status) {
-        this.status = status;
+
+    public void setDocStatus(DocumentStatus docStatus) {
+        this.docStatus = docStatus;
     }
-    public DocumentType getType() {
-        return type;
+
+    public DocumentType getDocType() {
+        return docType;
     }
-    public void setType(DocumentType type) {
-        this.type = type;
+
+    public void setDocType(DocumentType docType) {
+        this.docType = docType;
     }
+
     public String getAttribuitionDate() {
         return attribuitionDate;
     }
